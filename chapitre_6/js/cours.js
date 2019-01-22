@@ -26,36 +26,42 @@ function checkAccount(name, passwd)
 		}
 	}
 	if (check != 1)
-		return (console.log('Ce pseudo n\'existe pas'));
+		return (false);
 	return (false);
 }
-
-var form = document.querySelector("form");
-form.addEventListener('submit', function(e){
-	var pseudo = form.elements.pseudooo.value;
-	var mdp = form.elements.mdp.value;
-	console.log(pseudo);
-	console.log(mdp);
-	if (checkAccount(pseudo, mdp))
-		console.log('Valid passwd');
-	else
-		console.log('Invalid passwd');
-	e.preventDefault(); // Annulation de l'envoi des données
-})
-
-document.getElementById('mdp').addEventListener('focus', function (e){
-	document.getElementById('mdp').addEventListener('input', function(e){
-		let mdp = e.target.value;
-		let	help = document.getElementById('aideMdp');
-
-		if (mdp.length < 4)
-			e.target.style.backgroundColor = '#FF6363';
-		else if (mdp.length >= 4 && mdp.length < 8)
-			e.target.style.backgroundColor = 'orange';
-		else if (mdp.length >= 8)
-			e.target.style.backgroundColor = '#7DD581';
+function checkPasswd(){
+	var form = document.querySelector("form");
+	form.addEventListener('submit', function(e){
+		var pseudo = form.elements.pseudooo.value;
+		var mdp = form.elements.mdp.value;
+		console.log(pseudo);
+		console.log(mdp);
+		if (checkAccount(pseudo, mdp))
+			console.log('Valid passwd');
+		else
+			console.log('Invalid password or id');
+		e.preventDefault(); // Annulation de l'envoi des données
 	})
-})
-document.getElementById('mdp').addEventListener('blur', function (e){
-	e.target.style.backgroundColor = ''
-})
+}
+
+function good_size()
+{	document.getElementById('mdp').addEventListener('focus', function (e){
+		document.getElementById('mdp').addEventListener('input', function(e){
+			let mdp = e.target.value;
+			let	help = document.getElementById('aideMdp');
+
+			if (mdp.length < 4)
+				e.target.style.backgroundColor = '#FF6363';
+			else if (mdp.length >= 4 && mdp.length < 8)
+				e.target.style.backgroundColor = 'orange';
+			else if (mdp.length >= 8)
+				e.target.style.backgroundColor = '#7DD581';
+		})
+	})
+	document.getElementById('mdp').addEventListener('blur', function (e){
+		e.target.style.backgroundColor = ''
+	})
+}
+
+checkPasswd();
+good_size();
