@@ -9,6 +9,22 @@ const key=[
 	}
 ];
 
+function checkEmail(){
+	let email = document.getElementById('courriel');
+	if (!email)
+		return (console.log("Email form not found"));
+	email.addEventListener('keyup', function(e){
+		let str = e.target.value;
+		let regex = /.+@.+\..+/
+		if (!regex.test(str))
+			document.getElementById('aideCourriel').textContent = "Please enter a valid email.";
+	})
+	email.addEventListener('keydown', function(e){
+		document.getElementById('aideCourriel').textContent = "";
+	})
+}
+maisons.push({code: codeMaiso})
+
 function checkAccount(name, passwd)
 {
 	let i;
@@ -34,8 +50,6 @@ function checkPasswd(){
 	form.addEventListener('submit', function(e){
 		var pseudo = form.elements.pseudooo.value;
 		var mdp = form.elements.mdp.value;
-		console.log(pseudo);
-		console.log(mdp);
 		if (checkAccount(pseudo, mdp))
 			console.log('Valid passwd');
 		else
@@ -65,3 +79,4 @@ function good_size()
 
 checkPasswd();
 good_size();
+checkEmail();
